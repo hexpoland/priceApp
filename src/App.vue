@@ -1,28 +1,36 @@
 <template>
-  <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
-  </div>
+<div>
+  <topToolbar/>
+  <v-content class='content'>
+  <partsMain/>
+  </v-content>
+  <bottomNav/>
+</div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
-
-export default {
-  name: 'app',
-  components: {
-    HelloWorld
+import topToolbar from "@/components/TopToolbar";
+import bottomNav from "@/components/BottomNav"
+import partsMain from "@/components/PartsMain"
+  export default {
+    components:{
+      topToolbar,
+      bottomNav,
+      partsMain
+    }
   }
-}
 </script>
 
-<style>
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+<style scoped>
+* {
+  font-family:'Roboto'
 }
+.content{
+  
+  height:500px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+
 </style>
