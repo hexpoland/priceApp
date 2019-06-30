@@ -1,6 +1,13 @@
 <template>
-  <v-container class="mainView" v-bind:class="(partsNumber.length>8?'active':'nonActive')">
-    <input class="partInput" type="text" v-model="partsNumber" placeholder="podaj numer części...">
+  <v-container class="mainView" v-bind:class="(isActive?'active':'nonActive')">
+    <input
+      class="partInput"
+      @input="activeAnim"
+      @keyup.enter="searchParts"
+      type="text"
+      v-model="partsNumber"
+      placeholder="podaj numer części..."
+    />
     <v-icon class="search" @click="searchParts">search</v-icon>
   </v-container>
 </template>
@@ -18,8 +25,6 @@ export default {
   },
   methods: {
     szukaj(findPart) {
-      // definicja cennika tutaj lepszy perfomrance
-      // let cennik = $.getJSON('cennik.json', e => {
       let parts = this.priceList;
 
       if (findPart.lenght < 8) {
@@ -27,17 +32,13 @@ export default {
       }
       findPart = findPart.toUpperCase();
       let temp;
-      let founded = parts.filter((el, index) => {
+      let founded = parts.filter(el => {
         return el.properties.numer.match(findPart);
       });
-      //   console.log(founded);
-      founded.every((el, ind) => {
+
+      founded.every(el => {
         if (el.properties.cena > 0) {
           console.log("Cena niezerowa");
-          // notif.options.items[0].title = el.properties.numer;
-          // notif.options.items[0].message = el.properties.nazwa + '   ' + el.properties.cena;
-          // notif.show();
-          //   toList(el);
           alert(
             "Rational Price Extension\n\n" +
               "\tNumer:  " +
@@ -71,8 +72,6 @@ export default {
             });
             temp.forEach(el => {
               if (el.properties.cena != "0") {
-                // alert('Znalaziono:  ' + el.properties.nazwa + ' Cena: ' + el.properties.cena)
-                // toList(el);
                 alert(
                   "Rational Price Extension\n\n" +
                     "\tNumer:  " +
@@ -91,11 +90,16 @@ export default {
           }
         }
       });
-      //   }) // getJson first version
     },
     searchParts() {
-      this.isActive = !this.isActive;
       this.szukaj(this.partsNumber);
+    },
+    activeAnim() {
+      this.isActive = this.partsNumber !== "" ? true : false;
+      console.log("Emit input ");
+      if (this.isActive) {
+        this.$emit("inputActive");
+      }
     }
   }
 };
@@ -130,6 +134,9 @@ export default {
   height: 50px;
   border-radius: 50px;
   box-shadow: 2px 4px 9px lightgray;
+}
+.partInput:focus{
+  outline: none
 }
 .search {
   position: absolute;

@@ -1,22 +1,36 @@
 <template>
   <div>
-    <topToolbar/>
+    <topToolbar />
     <v-content class="content">
-      <partsMain/>
+      <inputComp />
+      <partsList @inputActive="inputHandler" v-if="inputActive" />
     </v-content>
-    <bottomNav/>
+    <bottomNav />
   </div>
 </template>
 
 <script>
 import topToolbar from "@/components/TopToolbar";
 import bottomNav from "@/components/BottomNav";
-import partsMain from "@/components/PartsMain";
+import inputComp from "@/components/Input";
+import partsList from "@/components/PartsList";
 export default {
   components: {
     topToolbar,
     bottomNav,
-    partsMain
+    inputComp,
+    partsList
+  },
+  data: () => {
+    return {
+      inputActive: false
+    };
+  },
+  computed: {
+    inputHandler() {
+      console.log("catch input");
+      this.inputActive = true;
+    }
   }
 };
 </script>
