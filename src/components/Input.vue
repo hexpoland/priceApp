@@ -135,8 +135,8 @@ export default {
   border-radius: 50px;
   box-shadow: 2px 4px 9px lightgray;
 }
-.partInput:focus{
-  outline: none
+.partInput:focus {
+  outline: none;
 }
 .search {
   position: absolute;
