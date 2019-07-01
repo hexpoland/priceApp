@@ -1,26 +1,37 @@
 <template>
   <v-container class="mainView" v-bind:class="(isActive?'active':'nonActive')">
-    <input
-      class="partInput"
-      @input="activeAnim"
-      @keyup.enter="searchParts"
-      type="text"
-      v-model="partsNumber"
-      placeholder="podaj numer części..."
-    />
-    <v-icon class="search" @click="searchParts">search</v-icon>
+    <!-- <fieldset> -->
+    <div class="divInput">
+      <input
+        class="partInput"
+        @input="activeAnim"
+        @keyup.enter="searchParts"
+        type="text"
+        v-model="partsNumber"
+        placeholder="podaj numer części..."
+      />
+      <v-icon class="search" @click="searchParts">search</v-icon>
+    </div>
+    <!-- </fieldset> -->
+    <div>
+      <List class="resultList" v-if="isActive" :result="resultFunc" />
+    </div>
   </v-container>
 </template>
 
 <script>
 import cennik from "../cennik.json";
-
+import List from "@/components/PartsList.vue";
 export default {
+  components: {
+    List
+  },
   data: () => {
     return {
       priceList: cennik.features,
       isActive: false,
-      partsNumber: ""
+      partsNumber: "",
+      resultArray: []
     };
   },
   methods: {
@@ -52,6 +63,7 @@ export default {
               ",- netto\n\n" +
               "▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬\n\n"
           );
+          this.resultArray.push(el);
         } else {
           if (el.properties.Informacje) {
             console.log("zastapione" + el.properties.Informacje);
@@ -85,6 +97,7 @@ export default {
                     ",- netto\n\n" +
                     "▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬\n\n"
                 );
+                this.resultArray.push(el);
               }
             });
           }
@@ -93,13 +106,20 @@ export default {
     },
     searchParts() {
       this.szukaj(this.partsNumber);
+    }
+  },
+  computed: {
+    resultFunc: function() {
+      return this.resultArray;
     },
     activeAnim() {
-      this.isActive = this.partsNumber !== "" ? true : false;
-      console.log("Emit input ");
-      if (this.isActive) {
+      // this.isActive =
+      //   this.partsNumber !== "" && this.resultArray.length > 0 ? true : false;
+      // console.log("Emit input ");
+      if (this.resultArray.length > 0) {
+        this.isActive = true;
         this.$emit("inputActive");
-      }
+      } else this.isActive = false;
     }
   }
 };
@@ -108,7 +128,7 @@ export default {
 <style>
 .active {
   transition: transform 1s ease;
-
+  margin-bottom: 20px;
   transform: translateY(-30vh);
   opacity: 0.6;
 }
@@ -125,7 +145,11 @@ export default {
   align-items: center;
   justify-content: center;
 }
+.divInput {
+  display: flex;
+}
 .partInput {
+  display: flex;
   color: gray;
   padding: 30px;
   font-size: 16px;
@@ -135,19 +159,29 @@ export default {
   border-radius: 50px;
   box-shadow: 2px 4px 9px lightgray;
 }
+
 .partInput:focus {
   outline: none;
 }
 .search {
+  /* position: absolute; */
+  top: 35px;
+  right: 120px;
   position: absolute;
   max-width: 50px;
   margin-left: 130px;
 }
 .mainView {
   display: flex;
-
+  flex-direction: column;
   align-items: center;
   justify-content: center;
+}
+.resultList {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-top: 30px;
 }
 @media only screen and (min-device-width: 375px) and (max-device-width: 667px) {
   .partInput {
