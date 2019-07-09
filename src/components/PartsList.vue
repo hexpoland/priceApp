@@ -32,7 +32,8 @@ export default {
   },
   data: () => {
     return {
-      selected: [2]
+      selected: [],
+      selectedParts: []
     };
   },
   methods: {
@@ -41,8 +42,18 @@ export default {
 
       if (i > -1) {
         this.selected.splice(i, 1);
+        this.selectedParts.splice(i, 1);
+        console.log(this.selectedParts);
       } else {
         this.selected.push(index);
+
+        this.selectedParts.push({
+          id: index,
+          numer: this.result[index].properties.numer,
+          nazwa: this.result[index].properties.nazwa,
+          cena: this.result[index].properties.cena
+        });
+        console.log(this.selectedParts);
       }
     }
   }
