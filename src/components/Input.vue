@@ -10,7 +10,7 @@
         v-model="partsNumber"
         placeholder="podaj numer części..."
       />
-      <v-icon class="search" @click="searchParts">search</v-icon>
+      <v-icon class="searchIco" @click="searchParts">search</v-icon>
     </div>
     <!-- </fieldset> -->
     <div>
@@ -146,7 +146,9 @@ export default {
   justify-content: center;
 }
 .divInput {
-  display: flex;
+  position: relative;
+  /* display: flex;
+  flex-direction: column; */
 }
 .partInput {
   display: flex;
@@ -163,13 +165,10 @@ export default {
 .partInput:focus {
   outline: none;
 }
-.search {
-  /* position: absolute; */
-  top: 35px;
-  right: 120px;
+.searchIco {
   position: absolute;
-  max-width: 50px;
-  margin-left: 130px;
+  top: 20px;
+  right: 20px;
 }
 .mainView {
   display: flex;
@@ -185,8 +184,14 @@ export default {
 }
 @media only screen and (min-device-width: 375px) and (max-device-width: 667px) {
   .partInput {
+    position: relative;
+    max-width: 100vh;
+    padding: 30px;
+    padding-right: 0;
+  }
+  /* .partInput {
     width: 100vh;
     height: 50px;
-  }
+  } */
 }
 </style>

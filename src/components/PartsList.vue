@@ -58,4 +58,9 @@ export default {
   max-height: 400px;
   overflow-y: scroll;
 }
+@media only screen(max-width:375) {
+  .resultView {
+    max-height: 100px;
+  }
+}
 </style>
