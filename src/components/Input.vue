@@ -105,7 +105,10 @@ export default {
       });
     },
     searchParts() {
-      this.szukaj(this.partsNumber);
+      if (this.partsNumber !== "") {
+        this.szukaj(this.partsNumber);
+        this.partsNumber = "";
+      }
     }
   },
   computed: {
