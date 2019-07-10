@@ -3,7 +3,7 @@
     <topToolbar />
     <v-content class="content">
       <inputComp />
-      <partsList @inputActive="inputHandler" v-if="inputActive" />
+      <partsList @inputActive="inputHandler" v-if="inputActive" @sendorder="sendOrder" />
     </v-content>
     <bottomNav />
   </div>
@@ -30,6 +30,9 @@ export default {
     inputHandler() {
       console.log("catch input");
       this.inputActive = true;
+    },
+    sendOrder() {
+      console.log(`this arr wil be sended `);
     }
   }
 };

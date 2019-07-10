@@ -4,7 +4,6 @@
     <div class="divInput">
       <input
         class="partInput"
-        @input="activeAnim"
         @keyup.enter="searchParts"
         type="text"
         v-model="partsNumber"
@@ -104,17 +103,6 @@ export default {
         }
       });
     },
-    searchParts() {
-      if (this.partsNumber !== "") {
-        this.szukaj(this.partsNumber);
-        this.partsNumber = "";
-      }
-    }
-  },
-  computed: {
-    resultFunc: function() {
-      return this.resultArray;
-    },
     activeAnim() {
       // this.isActive =
       //   this.partsNumber !== "" && this.resultArray.length > 0 ? true : false;
@@ -123,6 +111,18 @@ export default {
         this.isActive = true;
         this.$emit("inputActive");
       } else this.isActive = false;
+    },
+    searchParts() {
+      if (this.partsNumber !== "") {
+        this.szukaj(this.partsNumber);
+        this.partsNumber = "";
+        this.activeAnim();
+      }
+    }
+  },
+  computed: {
+    resultFunc: function() {
+      return this.resultArray;
     }
   }
 };

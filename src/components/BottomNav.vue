@@ -1,36 +1,38 @@
 <template>
-    <div>
-        <v-bottom-nav app fixed :active.sync="activeItem" :value="true">
-    <v-btn flat color="primary" value="top">
-      <span>Top Stories</span>
-      <v-icon>thumb_up</v-icon>
-    </v-btn>
+  <div>
+    <v-bottom-nav app fixed :active.sync="activeItem" :value="true">
+      <v-btn flat color="primary" value="top">
+        <span>Top Stories</span>
+        <v-icon>thumb_up</v-icon>
+      </v-btn>
 
-    <v-btn flat color="primary" value="code">
-      <span>Code Examples</span>
-      <v-icon>code</v-icon>
-    </v-btn>
+      <v-btn flat color="primary" value="code">
+        <span>Code Examples</span>
+        <v-icon>code</v-icon>
+      </v-btn>
 
-    <v-btn flat color="primary" value="favorites">
-      <span>Favorites</span>
-      <v-icon>favorite</v-icon>
-    </v-btn>
-
-</v-bottom-nav>
-    </div>
+      <v-btn @click="sendOrderClick" flat color="primary" value="favorites">
+        <span>Wyślij</span>
+        <v-icon>email</v-icon>
+      </v-btn>
+    </v-bottom-nav>
+  </div>
 </template>
 
 <script>
-    export default {
-        data:()=>{
-            return{
-                activeItem:''
-            }
-        }
-        
+export default {
+  data: () => {
+    return {
+      activeItem: ""
+    };
+  },
+  methods: {
+    sendOrderClick() {
+      this.$root.$emit("sendorder");
     }
+  }
+};
 </script>
 
 <style scoped>
-
 </style>

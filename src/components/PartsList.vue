@@ -36,6 +36,11 @@ export default {
       selectedParts: []
     };
   },
+  mounted() {
+    this.$root.$on("sendorder", () => {
+      console.log(JSON.stringify(this.selectedParts));
+    });
+  },
   methods: {
     toggle(index) {
       const i = this.selected.indexOf(index);
@@ -43,7 +48,6 @@ export default {
       if (i > -1) {
         this.selected.splice(i, 1);
         this.selectedParts.splice(i, 1);
-        console.log(this.selectedParts);
       } else {
         this.selected.push(index);
 
@@ -53,10 +57,13 @@ export default {
           nazwa: this.result[index].properties.nazwa,
           cena: this.result[index].properties.cena
         });
-        console.log(this.selectedParts);
       }
+    },
+    sendOrder() {
+      console.log(`this arr wil be sended ${this.selectedParts}`);
     }
-  }
+  },
+  computed: {}
 };
 </script>
 
