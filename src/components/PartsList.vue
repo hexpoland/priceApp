@@ -57,6 +57,7 @@ export default {
           nazwa: this.result[index].properties.nazwa,
           cena: this.result[index].properties.cena
         });
+        console.log(this.selectedParts);
       }
     },
     sendOrder() {

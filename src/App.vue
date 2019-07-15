@@ -32,7 +32,7 @@ export default {
       this.inputActive = true;
     },
     sendOrder() {
-      console.log(`this arr wil be sended `);
+      if (this.selectedParts) console.log(`this arr wil be sended `);
     }
   }
 };
@@ -41,6 +41,14 @@ export default {
 <style>
 * {
   font-family: "Roboto";
+}
+html,
+body {
+  background-color: #fff;
+  overflow: hidden;
+  height: 100%;
+  -webkit-overflow-scrolling: none;
+  position: fixed;
 }
 .content {
 }
