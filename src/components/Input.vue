@@ -49,19 +49,19 @@ export default {
       founded.every(el => {
         if (el.properties.cena > 0) {
           console.log("Cena niezerowa");
-          alert(
-            "Rational Price Extension\n\n" +
-              "\tNumer:  " +
-              el.properties.numer +
-              "\n" +
-              "\tNazwa:  " +
-              el.properties.nazwa +
-              "\n" +
-              "\tCena:   " +
-              el.properties.cena +
-              ",- netto\n\n" +
-              "▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬\n\n"
-          );
+          // alert(
+          //   "Rational Price Extension\n\n" +
+          //     "\tNumer:  " +
+          //     el.properties.numer +
+          //     "\n" +
+          //     "\tNazwa:  " +
+          //     el.properties.nazwa +
+          //     "\n" +
+          //     "\tCena:   " +
+          //     el.properties.cena +
+          //     ",- netto\n\n" +
+          //     "▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬\n\n"
+          // );
           this.resultArray.push(el);
         } else {
           if (el.properties.Informacje) {
@@ -83,19 +83,19 @@ export default {
             });
             temp.forEach(el => {
               if (el.properties.cena != "0") {
-                alert(
-                  "Rational Price Extension\n\n" +
-                    "\tNumer:  " +
-                    el.properties.numer +
-                    "\n" +
-                    "\tNazwa:  " +
-                    el.properties.nazwa +
-                    "\n" +
-                    "\tCena:   " +
-                    el.properties.cena +
-                    ",- netto\n\n" +
-                    "▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬\n\n"
-                );
+                // alert(
+                //   "Rational Price Extension\n\n" +
+                //     "\tNumer:  " +
+                //     el.properties.numer +
+                //     "\n" +
+                //     "\tNazwa:  " +
+                //     el.properties.nazwa +
+                //     "\n" +
+                //     "\tCena:   " +
+                //     el.properties.cena +
+                //     ",- netto\n\n" +
+                //     "▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬\n\n"
+                // );
                 this.resultArray.push(el);
               }
             });
@@ -188,13 +188,9 @@ export default {
 @media only screen and (min-device-width: 375px) and (max-device-width: 667px) {
   .partInput {
     position: relative;
-    max-width: 100vh;
+    max-width: 100%;
     padding: 30px;
     padding-right: 0;
   }
-  /* .partInput {
-    width: 100vh;
-    height: 50px;
-  } */
 }
 </style>

@@ -48,6 +48,10 @@ export default {
       if (i > -1) {
         this.selected.splice(i, 1);
         this.selectedParts.splice(i, 1);
+        this.$root.$emit(
+          "toggleItemRemove",
+          this.result[index].properties.cena
+        );
       } else {
         this.selected.push(index);
 
@@ -57,6 +61,7 @@ export default {
           nazwa: this.result[index].properties.nazwa,
           cena: this.result[index].properties.cena
         });
+        this.$root.$emit("toggleItemAdd", this.result[index].properties.cena);
         console.log(this.selectedParts);
       }
     },
@@ -77,9 +82,12 @@ export default {
   max-height: 400px;
   overflow-y: scroll;
 }
-@media only screen(max-width:375) {
+/* @media only screen(max-width:375) {
   .resultView {
-    max-height: 100px;
+    max-height: 100vh;
   }
-}
+} */
+/* .partsList {
+  width: 80%;
+} */
 </style>

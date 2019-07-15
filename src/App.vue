@@ -49,7 +49,6 @@ body {
   height: 100%;
   -webkit-overflow-scrolling: none;
   position: fixed;
-}
-.content {
+  width: 100%;
 }
 </style>
