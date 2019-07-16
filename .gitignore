@@ -1,4 +1,5 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 .DS_Store
 node_modules
 /dist
@@ -13,10 +14,16 @@ node_modules
 logs
 *.log
 >>>>>>> 38b89dd5beb6640a8fbd472f07062150e210618f
+=======
+# Logs
+logs
+*.log
+>>>>>>> 38b89dd5beb6640a8fbd472f07062150e210618f
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 # Editor directories and files
 .idea
@@ -27,6 +34,8 @@ yarn-error.log*
 *.sln
 *.sw?
 =======
+=======
+>>>>>>> 38b89dd5beb6640a8fbd472f07062150e210618f
 # Runtime data
 pids
 *.pid
@@ -81,4 +90,7 @@ typings/
 
 # next.js build output
 .next
+<<<<<<< HEAD
+>>>>>>> 38b89dd5beb6640a8fbd472f07062150e210618f
+=======
 >>>>>>> 38b89dd5beb6640a8fbd472f07062150e210618f

@@ -1,4 +1,5 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 # app
 
 ## Project setup
@@ -28,6 +29,9 @@ yarn run lint
 
 ### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).
+=======
+# priceApp
+>>>>>>> 38b89dd5beb6640a8fbd472f07062150e210618f
 =======
 # priceApp
 >>>>>>> 38b89dd5beb6640a8fbd472f07062150e210618f
