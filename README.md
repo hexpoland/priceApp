@@ -1,6 +1,5 @@
-<<<<<<< HEAD
-<<<<<<< HEAD
-# app
+
+# PriceApp
 
 ## Project setup
 ```
