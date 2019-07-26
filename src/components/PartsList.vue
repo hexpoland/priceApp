@@ -22,6 +22,7 @@
 </template>
 
 <script>
+import store from "@/store.js";
 export default {
   name: "PartsList",
   props: {
@@ -61,6 +62,7 @@ export default {
           nazwa: this.result[index].properties.nazwa,
           cena: this.result[index].properties.cena
         });
+        console.log(this.selectedParts.length);
         this.$root.$emit("toggleItemAdd", this.result[index].properties.cena);
         console.log(this.selectedParts);
       }

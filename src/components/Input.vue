@@ -28,7 +28,7 @@ export default {
   data: () => {
     return {
       priceList: cennik.features,
-      isActive: false,
+      isActive: true,
       partsNumber: "",
       resultArray: []
     };
@@ -63,6 +63,7 @@ export default {
           //     "▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬\n\n"
           // );
           this.resultArray.push(el);
+          this.$store.commit("ADD_TO_STORE", el);
         } else {
           if (el.properties.Informacje) {
             console.log("zastapione" + el.properties.Informacje);
@@ -97,6 +98,7 @@ export default {
                 //     "▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬\n\n"
                 // );
                 this.resultArray.push(el);
+                this.$store.commit("ADD_TO_STORE", el);
               }
             });
           }
@@ -122,6 +124,9 @@ export default {
   },
   computed: {
     resultFunc: function() {
+      console.log(this.resultArray);
+      this.resultArray = this.$store.state.item;
+      console.log(this.resultArray);
       return this.resultArray;
     }
   }
