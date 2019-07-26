@@ -62,7 +62,7 @@ export default {
           //     ",- netto\n\n" +
           //     "▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬\n\n"
           // );
-          this.resultArray.push(el);
+          // this.resultArray.push(el);
           this.$store.commit("ADD_TO_STORE", el);
         } else {
           if (el.properties.Informacje) {
@@ -97,7 +97,7 @@ export default {
                 //     ",- netto\n\n" +
                 //     "▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬\n\n"
                 // );
-                this.resultArray.push(el);
+                // this.resultArray.push(el);
                 this.$store.commit("ADD_TO_STORE", el);
               }
             });
@@ -124,10 +124,9 @@ export default {
   },
   computed: {
     resultFunc: function() {
-      console.log(this.resultArray);
       this.resultArray = this.$store.state.item;
-      console.log(this.resultArray);
-      return this.resultArray;
+
+      return this.resultArray.reverse();
     }
   }
 };
