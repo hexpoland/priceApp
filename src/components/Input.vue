@@ -4,6 +4,7 @@
     <div class="divInput">
       <input
         class="partInput"
+        @keyup="onlyDot"
         @keyup.enter="searchParts"
         type="text"
         v-model="partsNumber"
@@ -120,6 +121,9 @@ export default {
         this.partsNumber = "";
         this.activeAnim();
       }
+    },
+    onlyDot(){
+      this.partsNumber=this.partsNumber.replace(',','.')
     }
   },
   computed: {
