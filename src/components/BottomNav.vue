@@ -1,9 +1,9 @@
 <template>
   <div>
     <v-bottom-nav app fixed :active.sync="activeItem" :value="true">
-      <v-btn flat color="primary" value="top">
-        <span>Top Stories</span>
-        <v-icon>thumb_up</v-icon>
+      <v-btn @click="removeItem" flat color="primary" value="top">
+        <span>Usuń</span>
+        <v-icon>delete</v-icon>
       </v-btn>
 
       <v-btn flat color="primary" value="code">
@@ -29,6 +29,9 @@ export default {
   methods: {
     sendOrderClick() {
       this.$root.$emit("sendorder");
+    },
+    removeItem(){
+      this.$root.$emit('removeItem')
     }
   }
 };
