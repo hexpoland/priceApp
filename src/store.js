@@ -13,7 +13,7 @@ export default new Vuex.Store({
       state.item.push(item)
     },
     REMOVE_FROM_STORE (state, arr) {
-      console.log(`remove commit`)
+      state.item = []
     }
   },
   actions: {},

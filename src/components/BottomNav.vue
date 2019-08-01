@@ -30,8 +30,9 @@ export default {
     sendOrderClick() {
       this.$root.$emit("sendorder");
     },
-    removeItem(){
-      this.$root.$emit('removeItem')
+    removeItem() {
+      this.$root.$emit("toggleItemRemove");
+      this.$root.$emit("removeItem");
     }
   }
 };

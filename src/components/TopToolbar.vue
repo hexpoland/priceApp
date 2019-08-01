@@ -50,7 +50,7 @@ export default {
     });
     this.$root.$on("toggleItemRemove", e => {
       console.log(e);
-      this.removeToPrice(e);
+      this.removeToPrice();
     });
   },
   methods: {
@@ -62,10 +62,8 @@ export default {
       this.totalPrice =
         Number.parseInt(this.totalPrice) + Number.parseInt(e + 1);
     },
-    removeToPrice: function(e) {
-      console.log(this.totalPrice);
-      this.totalPrice =
-        Number.parseInt(this.totalPrice) - Number.parseInt(e + 1);
+    removeToPrice: function() {
+      this.totalPrice = 0;
     }
   },
   computed: {}
