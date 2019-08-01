@@ -11,12 +11,11 @@ export default new Vuex.Store({
   mutations: {
     ADD_TO_STORE (state, item) {
       state.item.push(item)
+    },
+    REMOVE_FROM_STORE (state, arr) {
+      console.log(`remove commit`)
     }
   },
-  actions: {
-    addToStore (items) {
-      store.commit('ADD_TO_STORE', items)
-    }
-  },
+  actions: {},
   plugins: [createPersistedState()]
 })

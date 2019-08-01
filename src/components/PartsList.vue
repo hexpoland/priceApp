@@ -40,7 +40,10 @@ export default {
   mounted() {
     this.$root.$on("sendorder", () => {
       console.log(JSON.stringify(this.selectedParts));
-    });
+    }),
+      this.$root.$on("removeItem", () => {
+        this.$store.commit("REMOVE_FROM_STORE", this.selectedParts);
+      });
   },
   methods: {
     toggle(index) {
@@ -62,9 +65,9 @@ export default {
           nazwa: this.result[index].properties.nazwa,
           cena: this.result[index].properties.cena
         });
-        console.log(this.selectedParts.length);
+        //console.log(this.selectedParts.length);
         this.$root.$emit("toggleItemAdd", this.result[index].properties.cena);
-        console.log(this.selectedParts);
+        //console.log(this.selectedParts);
       }
     },
     sendOrder() {

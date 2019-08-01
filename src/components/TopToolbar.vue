@@ -21,10 +21,13 @@
       </v-list>
     </v-navigation-drawer>
 
-    <v-toolbar fixed app light>
+    <v-toolbar fixed app class="blue darken-2" dark>
       <v-toolbar-side-icon @click.stop="toggleMenu"></v-toolbar-side-icon>
 
-      <v-toolbar-title class="font-weight-thin">Parts'nPrice</v-toolbar-title>
+      <v-toolbar-title class="font-weight-thin">
+        Parts'n
+        <strong>Price</strong>
+      </v-toolbar-title>
       <v-toolbar-title class="allPrice">{{totalPrice}} zł</v-toolbar-title>
     </v-toolbar>
   </div>

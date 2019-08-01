@@ -122,8 +122,8 @@ export default {
         this.activeAnim();
       }
     },
-    onlyDot(){
-      this.partsNumber=this.partsNumber.replace(',','.')
+    onlyDot() {
+      this.partsNumber = this.partsNumber.replace(",", ".");
     }
   },
   computed: {
@@ -167,7 +167,7 @@ export default {
   padding: 30px;
   font-size: 16px;
   border: 1px solid lightgray;
-  width: 50vh;
+  width: 70vw;
   height: 50px;
   border-radius: 50px;
   box-shadow: 2px 4px 9px lightgray;
@@ -188,15 +188,17 @@ export default {
   justify-content: center;
 }
 .resultList {
-  width: 100%;
   display: flex;
   justify-content: center;
-  margin-top: 30px;
+  margin-top: 40px;
 }
 @media only screen and (min-device-width: 375px) and (max-device-width: 667px) {
+  .mainView {
+    width: auto;
+  }
   .partInput {
     position: relative;
-    max-width: 100%;
+    max-width: auto;
     padding: 30px;
     padding-right: 0;
   }
