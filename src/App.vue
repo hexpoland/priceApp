@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="app">
     <topToolbar />
     <v-content class="content">
       <inputComp />
@@ -44,11 +44,16 @@ export default {
 }
 html,
 body {
-  background-color: #fff;
+  background-color: #1976d2;
   overflow: hidden;
   height: 100%;
   -webkit-overflow-scrolling: none;
   position: fixed;
   width: 100%;
+}
+.app {
+  width: 100vm;
+  height: 100%;
+  background-color: white;
 }
 </style>

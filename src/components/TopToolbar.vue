@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="topToolbar">
     <v-navigation-drawer app fixed v-model="showMenu">
       <v-list dense>
         <v-list-tile @click>
@@ -71,4 +71,7 @@ export default {
 </script>
 
 <style >
+.topToolbar {
+  z-index: 2;
+}
 </style>
