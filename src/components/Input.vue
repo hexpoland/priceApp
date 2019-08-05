@@ -4,6 +4,7 @@
     <div class="divInput">
       <input
         class="partInput"
+        @focus="prevent"
         @keyup="onlyDot"
         @keyup.enter="searchParts"
         type="text"
@@ -129,6 +130,10 @@ export default {
     },
     onlyDot() {
       this.partsNumber = this.partsNumber.replace(",", ".");
+    },
+    prevent() {
+      window.scrollTo(0, 0);
+      document.body.scrollTop = 0;
     }
   },
   computed: {
