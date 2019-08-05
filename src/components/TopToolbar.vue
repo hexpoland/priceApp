@@ -7,7 +7,7 @@
             <v-icon>settings</v-icon>
           </v-list-tile-action>
           <v-list-tile-content>
-            <v-list-tile-title>Settings</v-list-tile-title>
+            <v-list-tile-title>Ustawienia</v-list-tile-title>
           </v-list-tile-content>
         </v-list-tile>
         <v-list-tile @click>
@@ -15,7 +15,7 @@
             <v-icon>help</v-icon>
           </v-list-tile-action>
           <v-list-tile-content>
-            <v-list-tile-title>Help</v-list-tile-title>
+            <v-list-tile-title>Pomoc</v-list-tile-title>
           </v-list-tile-content>
         </v-list-tile>
       </v-list>
@@ -50,7 +50,10 @@ export default {
     });
     this.$root.$on("toggleItemRemove", e => {
       console.log(e);
-      this.removeToPrice();
+      this.removeToPrice(e);
+    });
+    this.$root.$on("removeItem", () => {
+      this.totalPrice = 0;
     });
   },
   methods: {
@@ -62,8 +65,9 @@ export default {
       this.totalPrice =
         Number.parseInt(this.totalPrice) + Number.parseInt(e + 1);
     },
-    removeToPrice: function() {
-      this.totalPrice = 0;
+    removeToPrice: function(e) {
+      this.totalPrice = this.totalPrice =
+        Number.parseInt(this.totalPrice) - Number.parseInt(e + 1);
     }
   },
   computed: {}

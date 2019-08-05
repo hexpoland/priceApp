@@ -26,6 +26,13 @@ export default {
   components: {
     List
   },
+  mounted: function mounted() {
+    this.activeAnim();
+    //animacja po usunieciu listy
+    this.$root.$on("deletedItems", () => {
+      this.activeAnim();
+    });
+  },
   data: () => {
     return {
       priceList: cennik.features,
@@ -107,10 +114,8 @@ export default {
       });
     },
     activeAnim() {
-      // this.isActive =
-      //   this.partsNumber !== "" && this.resultArray.length > 0 ? true : false;
-      // console.log("Emit input ");
-      if (this.resultArray.length > 0) {
+      console.log("Animation enabled");
+      if (this.$store.state.item.length > 0) {
         this.isActive = true;
         this.$emit("inputActive");
       } else this.isActive = false;

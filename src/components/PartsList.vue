@@ -2,7 +2,7 @@
   <div class="resultView">
     <v-list two-line>
       <template v-for="(item,index) in result">
-        <v-list-tile ripple @click="toggle(index)">
+        <v-list-tile class="styleLista" ripple @click="toggle(index)">
           <v-list-tile-content>
             <v-list-tile-title>{{item.properties.numer}}</v-list-tile-title>
             <v-list-tile-sub-title>{{item.properties.nazwa}}</v-list-tile-sub-title>
@@ -42,6 +42,7 @@ export default {
       console.log(JSON.stringify(this.selectedParts));
     }),
       this.$root.$on("removeItem", () => {
+        this.selectedParts = [];
         this.$store.commit("REMOVE_FROM_STORE", this.selectedParts);
       });
   },
@@ -86,6 +87,9 @@ export default {
   left: 0px;
   max-height: 400px;
   overflow-y: scroll;
+}
+.styleLista {
+  width: 80vm;
 }
 /* @media only screen(max-width:375) {
   .resultView {
