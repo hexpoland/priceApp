@@ -6,9 +6,14 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
-    item: []
+    item: [],
+    setting: {}
   },
   mutations: {
+    SAVE_SETTINGS (state, item) {
+      state.setting = []
+      state.setting.push(item)
+    },
     ADD_TO_STORE (state, item) {
       state.item.push(item)
     },
