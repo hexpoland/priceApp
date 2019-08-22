@@ -67,6 +67,8 @@
 
 <script>
 import store from "@/store.js";
+import axios from "axios";
+import SimpleCrypto from "simple-crypto-js";
 export default {
   props: {},
 
@@ -78,10 +80,20 @@ export default {
       email: "",
       username: "",
       password: "",
-      saveSettings: false
+      saveSettings: false,
+      passkey: ""
     };
   },
-  created() {},
+  created() {
+    axios
+      .get("https://partsnpriceapi.herokuapp.com/passportkey")
+      .then(res => {
+        this.passkey = res.data.passkey;
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  },
   mounted() {
     this.$root.$on("toggleItemAdd", e => {
       console.log(`Cena dodajemy: ${e}`);
@@ -100,11 +112,13 @@ export default {
   },
   methods: {
     saveFunc: function() {
+      let simpleCrypto = new SimpleCrypto(this.passkey);
+
       this.settingsDialog = false;
       let user = {
         email: this.email,
         username: this.username,
-        password: this.password
+        password: simpleCrypto.encrypt(this.password)
       };
 
       if (this.saveSettings) {

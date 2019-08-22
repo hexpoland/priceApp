@@ -8,8 +8,8 @@
       <v-btn flat v-if="spinner" color="primary">
         <v-progress-circular class="spinner" indeterminate color="green"></v-progress-circular>
       </v-btn>
-      <!-- <v-btn v-if="!spinner" @click="webShop" flat color="primary" value="code"> -->
-      <v-btn v-if="!spinner" flat color="primary" value="code">
+      <v-btn v-if="!spinner" @click="webShop" flat color="primary" value="code">
+        <!-- <v-btn v-if="!spinner" flat color="primary" value="code"> -->
         <span>WebShop</span>
         <v-icon color="blue">shop</v-icon>
       </v-btn>
@@ -50,7 +50,7 @@ export default {
         itemToWebshop = itemToWebshop + element.numer + "&";
       });
       axios
-        .get("http://localhost:3000/?", {
+        .get("https://partsnpriceapi.herokuapp.com/?", {
           params: {
             username: user.username,
             pass: user.password,
