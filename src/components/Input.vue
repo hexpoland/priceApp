@@ -140,7 +140,7 @@ export default {
     resultFunc: function() {
       this.resultArray = this.$store.state.item;
 
-      return this.resultArray.reverse();
+      return this.resultArray;
     }
   }
 };

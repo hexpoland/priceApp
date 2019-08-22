@@ -1,5 +1,9 @@
 <template>
   <div class="app">
+    <v-snackbar v-model="snackbar" top=true color="green">
+      Dodano do webshopa
+      <v-btn color="red" @click="snackbar = false">Close</v-btn>
+    </v-snackbar>
     <topToolbar />
     <v-content class="content">
       <inputComp />
@@ -23,7 +27,8 @@ export default {
   },
   data: () => {
     return {
-      inputActive: false
+      inputActive: false,
+      snackbar: true
     };
   },
   computed: {

@@ -42,8 +42,11 @@ export default {
       console.log(JSON.stringify(this.selectedParts));
     }),
       this.$root.$on("removeItem", () => {
-        this.selectedParts = [];
         this.$store.commit("REMOVE_FROM_STORE", this.selectedParts);
+
+        this.selectedParts = [];
+        this.selected = [];
+        this.$store.commit("SELECTED", this.selectedParts);
       });
   },
   methods: {
@@ -57,19 +60,21 @@ export default {
           "toggleItemRemove",
           this.result[index].properties.cena
         );
+        console.log(this.selectedParts);
       } else {
         this.selected.push(index);
-
-        this.selectedParts.push({
+        let el = {
           id: index,
           numer: this.result[index].properties.numer,
           nazwa: this.result[index].properties.nazwa,
           cena: this.result[index].properties.cena
-        });
+        };
+
+        this.selectedParts.push(el);
         //console.log(this.selectedParts.length);
         this.$root.$emit("toggleItemAdd", this.result[index].properties.cena);
-        //console.log(this.selectedParts);
       }
+      this.$store.commit("SELECTED", this.selectedParts);
     },
     sendOrder() {
       console.log(`this arr wil be sended ${this.selectedParts}`);

@@ -3,10 +3,22 @@ import Vuex from 'vuex'
 import createPersistedState from 'vuex-persistedstate'
 
 Vue.use(Vuex)
+function comparer (otherArray) {
+  return function (current) {
+    return (
+      otherArray.filter(function (other) {
+        console.log('comparer')
+        console.log(other)
+        return other.nazwa == current.nazwa && other.numer == current.numer
+      }).length == 0
+    )
+  }
+}
 
 export default new Vuex.Store({
   state: {
     item: [],
+    selectedItem: [],
     setting: {}
   },
   mutations: {
@@ -18,7 +30,22 @@ export default new Vuex.Store({
       state.item.push(item)
     },
     REMOVE_FROM_STORE (state, arr) {
-      state.item = []
+      if (Array.isArray(arr)) {
+        for (let i = 0; i < arr.length; i++) {
+          for (let z = 0; z < state.item.length; z++) {
+            if (state.item[z].properties.nazwa === arr[i].nazwa) {
+              state.item.splice(z, 1)
+            }
+          }
+        }
+      }
+      console.log('ITEM TABLE')
+      console.log(state.item)
+      console.log('Selected Table')
+      console.log(state.selectedItem)
+    },
+    SELECTED (state, item) {
+      state.selectedItem = item
     }
   },
   actions: {},
