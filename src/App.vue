@@ -1,9 +1,5 @@
 <template>
   <div class="app">
-    <v-snackbar v-model="snackbar" top=true color="green">
-      Dodano do webshopa
-      <v-btn color="red" @click="snackbar = false">Close</v-btn>
-    </v-snackbar>
     <topToolbar />
     <v-content class="content">
       <inputComp />
@@ -18,6 +14,7 @@ import topToolbar from "@/components/TopToolbar";
 import bottomNav from "@/components/BottomNav";
 import inputComp from "@/components/Input";
 import partsList from "@/components/PartsList";
+import webshopBasket from "@/components/WebshopBasket";
 export default {
   components: {
     topToolbar,

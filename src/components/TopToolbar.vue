@@ -27,8 +27,14 @@
       <v-toolbar-title class="font-weight-thin">
         Parts'n
         <strong>Price</strong>
+        <sub>beta</sub>
       </v-toolbar-title>
       <v-toolbar-title class="allPrice">{{totalPrice}} zł</v-toolbar-title>
+      <v-spacer></v-spacer>
+
+      <v-btn icon>
+        <v-icon>shop</v-icon>
+      </v-btn>
     </v-toolbar>
 
     <v-dialog v-model="settingsDialog" persistent max-width="600px">
