@@ -4,6 +4,7 @@
     <v-content class="content">
       <inputComp />
       <partsList @inputActive="inputHandler" v-if="inputActive" @sendorder="sendOrder" />
+      <webshopBasket />
     </v-content>
     <bottomNav />
   </div>
@@ -20,7 +21,8 @@ export default {
     topToolbar,
     bottomNav,
     inputComp,
-    partsList
+    partsList,
+    webshopBasket
   },
   data: () => {
     return {

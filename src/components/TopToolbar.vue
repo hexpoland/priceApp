@@ -33,7 +33,7 @@
       <v-spacer></v-spacer>
 
       <v-btn icon>
-        <v-icon>shop</v-icon>
+        <v-icon @click="emitWebshop">shop</v-icon>
       </v-btn>
     </v-toolbar>
 
@@ -75,14 +75,18 @@
 import store from "@/store.js";
 import axios from "axios";
 import SimpleCrypto from "simple-crypto-js";
+import webshopBasket from "@/components/WebshopBasket";
 export default {
   props: {},
-
+  components: {
+    webshopBasket
+  },
   data: () => {
     return {
       showMenu: false,
       totalPrice: 0,
       settingsDialog: false,
+      webshopDialog: false,
       email: "",
       username: "",
       password: "",
@@ -117,6 +121,9 @@ export default {
     })();
   },
   methods: {
+    emitWebshop: function() {
+      this.$root.$emit("webshopButton");
+    },
     saveFunc: function() {
       let simpleCrypto = new SimpleCrypto(this.passkey);
 
