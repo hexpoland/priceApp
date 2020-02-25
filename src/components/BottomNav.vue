@@ -13,6 +13,7 @@
         <span>WebShop</span>
         <v-icon color="blue">shop</v-icon>
       </v-btn>
+      <!-- after commit  -->
 
       <v-btn @click="sendOrderClick" flat color="primary" value="favorites">
         <span>Wyślij</span>
