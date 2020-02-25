@@ -9,67 +9,11 @@
           <v-btn icon @click="dialog = false">
             <v-icon>close</v-icon>
           </v-btn>
-          <v-toolbar-title>WebShop</v-toolbar-title>
-          <v-spacer></v-spacer>
+          <v-toolbar-title class="font-weight-thin">
+            Web
+            <strong>Shop</strong>
+          </v-toolbar-title>
         </v-toolbar>
-        <v-list three-line subheader>
-          <v-subheader>User Controls</v-subheader>
-          <v-list-item>
-            <v-list-item-content>
-              <v-list-item-title>Content filtering</v-list-item-title>
-              <v-list-item-subtitle>
-                Set the content filtering level to restrict apps that can be
-                downloaded
-              </v-list-item-subtitle>
-            </v-list-item-content>
-          </v-list-item>
-          <v-list-item>
-            <v-list-item-content>
-              <v-list-item-title>Password</v-list-item-title>
-              <v-list-item-subtitle>
-                Require password for purchase or use password to restrict
-                purchase
-              </v-list-item-subtitle>
-            </v-list-item-content>
-          </v-list-item>
-        </v-list>
-        <v-divider></v-divider>
-        <v-list three-line subheader>
-          <v-subheader>General</v-subheader>
-          <v-list-item>
-            <v-list-item-action>
-              <v-checkbox v-model="notifications"></v-checkbox>
-            </v-list-item-action>
-            <v-list-item-content>
-              <v-list-item-title>Notifications</v-list-item-title>
-              <v-list-item-subtitle>
-                Notify me about updates to apps or games that I
-                downloaded
-              </v-list-item-subtitle>
-            </v-list-item-content>
-          </v-list-item>
-          <v-list-item>
-            <v-list-item-action>
-              <v-checkbox v-model="sound"></v-checkbox>
-            </v-list-item-action>
-            <v-list-item-content>
-              <v-list-item-title>Sound</v-list-item-title>
-              <v-list-item-subtitle>
-                Auto-update apps at any time. Data charges may
-                apply
-              </v-list-item-subtitle>
-            </v-list-item-content>
-          </v-list-item>
-          <v-list-item>
-            <v-list-item-action>
-              <v-checkbox v-model="widgets"></v-checkbox>
-            </v-list-item-action>
-            <v-list-item-content>
-              <v-list-item-title>Auto-add widgets</v-list-item-title>
-              <v-list-item-subtitle>Automatically add home screen widgets</v-list-item-subtitle>
-            </v-list-item-content>
-          </v-list-item>
-        </v-list>
       </v-card>
     </v-dialog>
   </v-row>
@@ -77,10 +21,12 @@
 
 
 <script>
+import axios from "axios";
 export default {
   data: function() {
     return {
-      dialog: false
+      dialog: false,
+      items: []
     };
   },
   mounted() {
@@ -88,10 +34,19 @@ export default {
       this.dialog = true;
     });
   },
-  methods: {
-    getItemFromWebshop() {
-      console.log("Get item from webshop");
-    }
+  created() {
+    let user = this.$store.state.setting[0];
+
+    axios
+      .get("https://partsnpriceapi.herokuapp.com/webshopBasket", {
+        params: { username: user.username, pass: user.password }
+      })
+      .then(res => {
+        this.items = res.data.webshopItems;
+      })
+      .catch(err => {
+        console.log(err);
+      });
   }
 };
 </script>
