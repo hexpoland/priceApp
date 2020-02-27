@@ -39,6 +39,7 @@ export default {
 
     axios
       .get("https://partsnpriceapi.herokuapp.com/webshopBasket", {
+        headers: { "Access-COntroll-Allow-Origin": "*" },
         params: { username: user.username, pass: user.password }
       })
       .then(res => {
