@@ -29,27 +29,34 @@ export default {
       items: []
     };
   },
+  methods: {
+    async getWebshopItems() {
+      let user = this.$store.state.setting[0];
+
+      console.log("get webshop");
+      axios
+        .get("https://partsnpriceapi.herokuapp.com/webshopBasket", {
+          crossdomain: true,
+          headers: { "Access-Controll-Allow-Origin": "*" },
+          params: { username: user.username, pass: user.password }
+        })
+        .then(res => {
+          console.log("I get webshop items");
+          this.items = res.data.webshopItems;
+        })
+        .catch(err => {
+          console.log(err);
+        });
+    }
+  },
   mounted() {
+    this.getWebshopItems();
+
     this.$root.$on("webshopButton", () => {
       this.dialog = true;
     });
   },
-  created() {
-    let user = this.$store.state.setting[0];
-
-    axios
-      .get("https://partsnpriceapi.herokuapp.com/webshopBasket", {
-        crossdomain: true,
-        headers: { "Access-Controll-Allow-Origin": "*" },
-        params: { username: user.username, pass: user.password }
-      })
-      .then(res => {
-        this.items = res.data.webshopItems;
-      })
-      .catch(err => {
-        console.log(err);
-      });
-  }
+  created() {}
 };
 </script>
 
