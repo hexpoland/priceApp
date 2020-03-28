@@ -1,6 +1,11 @@
 <template>
   <v-row justify="center">
-    <v-dialog v-model="dialog" fullscreen hide-overlay transition="dialog-bottom-transition">
+    <v-dialog
+      v-model="dialog"
+      fullscreen
+      hide-overlay
+      transition="dialog-bottom-transition"
+    >
       <template v-slot:activator="{ on }">
         <!-- <v-btn color="primary" dark v-on="on">Open Dialog</v-btn> -->
       </template>
@@ -19,7 +24,6 @@
   </v-row>
 </template>
 
-
 <script>
 import axios from "axios";
 export default {
@@ -37,7 +41,7 @@ export default {
       axios
         .get("https://partsnpriceapi.herokuapp.com/webshopBasket", {
           crossdomain: true,
-          headers: { "Access-Controll-Allow-Origin": "*" },
+          headers: { "Access-Control-Allow-Origin": "*" },
           params: { username: user.username, pass: user.password }
         })
         .then(res => {
@@ -60,5 +64,4 @@ export default {
 };
 </script>
 
-<style>
-</style>
+<style></style>

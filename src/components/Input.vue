@@ -1,6 +1,8 @@
 <template>
-  <v-container class="mainView" v-bind:class="(isActive?'active':'nonActive')">
-    <!-- <fieldset> -->
+  <v-container
+    class="mainView"
+    v-bind:class="isActive ? 'active' : 'nonActive'"
+  >
     <div class="divInput">
       <input
         class="partInput"
@@ -57,21 +59,6 @@ export default {
 
       founded.every(el => {
         if (el.properties.cena > 0) {
-          console.log("Cena niezerowa");
-          // alert(
-          //   "Rational Price Extension\n\n" +
-          //     "\tNumer:  " +
-          //     el.properties.numer +
-          //     "\n" +
-          //     "\tNazwa:  " +
-          //     el.properties.nazwa +
-          //     "\n" +
-          //     "\tCena:   " +
-          //     el.properties.cena +
-          //     ",- netto\n\n" +
-          //     "▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬\n\n"
-          // );
-          // this.resultArray.push(el);
           this.$store.commit("ADD_TO_STORE", el);
         } else {
           if (el.properties.Informacje) {
@@ -93,20 +80,6 @@ export default {
             });
             temp.forEach(el => {
               if (el.properties.cena != "0") {
-                // alert(
-                //   "Rational Price Extension\n\n" +
-                //     "\tNumer:  " +
-                //     el.properties.numer +
-                //     "\n" +
-                //     "\tNazwa:  " +
-                //     el.properties.nazwa +
-                //     "\n" +
-                //     "\tCena:   " +
-                //     el.properties.cena +
-                //     ",- netto\n\n" +
-                //     "▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬\n\n"
-                // );
-                // this.resultArray.push(el);
                 this.$store.commit("ADD_TO_STORE", el);
               }
             });
