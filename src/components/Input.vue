@@ -4,10 +4,11 @@
     v-bind:class="isActive ? 'active' : 'nonActive'"
   >
     <div class="divInput">
+      <span v-if="autoSug" class="suggest">{{ autoSug.properties.nazwa }}</span>
       <input
+        v-on:change="autoSug"
         class="partInput"
         @focus="prevent"
-        @keyup="onlyDot"
         @keyup.enter="searchParts"
         type="text"
         v-model="partsNumber"
@@ -27,7 +28,7 @@ import cennik from "../cennik.json";
 import List from "@/components/PartsList.vue";
 export default {
   components: {
-    List
+    List,
   },
   mounted: function mounted() {
     this.activeAnim();
@@ -41,23 +42,26 @@ export default {
       priceList: cennik.features,
       isActive: true,
       partsNumber: "",
-      resultArray: []
+      resultArray: [],
     };
   },
   methods: {
     szukaj(findPart) {
       let parts = this.priceList;
-
+      if (this.autoSug) {
+        console.log("DEBUG FAVORITES");
+        findPart = this.autoSug.properties.numer;
+      }
       if (findPart.lenght < 8) {
         return;
       }
       findPart = findPart.toUpperCase();
       let temp;
-      let founded = parts.filter(el => {
+      let founded = parts.filter((el) => {
         return el.properties.numer.match(findPart);
       });
 
-      founded.every(el => {
+      founded.every((el) => {
         if (el.properties.cena > 0) {
           this.$store.commit("ADD_TO_STORE", el);
         } else {
@@ -73,12 +77,12 @@ export default {
               );
             }
 
-            temp = parts.filter(el => {
+            temp = parts.filter((el) => {
               return Array.isArray(newNumber)
                 ? el.properties.numer.match(newNumber[0])
                 : el.properties.numer.match(newNumber);
             });
-            temp.forEach(el => {
+            temp.forEach((el) => {
               if (el.properties.cena != "0") {
                 this.$store.commit("ADD_TO_STORE", el);
               }
@@ -88,7 +92,6 @@ export default {
       });
     },
     activeAnim() {
-      console.log("Animation enabled");
       if (this.$store.state.item.length > 0) {
         this.isActive = true;
         this.$emit("inputActive");
@@ -107,23 +110,48 @@ export default {
     prevent() {
       window.scrollTo(0, 0);
       document.body.scrollTop = 0;
-    }
+    },
   },
   computed: {
+    autoSug: function() {
+      let result = "";
+
+      if (this.partsNumber.length > 2) {
+        result = this.$store.state.favorites.filter((el) => {
+          return el.properties.numer.match(this.partsNumber);
+        });
+        if (result.length > 0) {
+          return result[0];
+        } else {
+          return false;
+        }
+      }
+      return false;
+    },
     resultFunc: function() {
       this.resultArray = this.$store.state.item;
 
       return this.resultArray;
-    }
-  }
+    },
+  },
 };
 </script>
 
 <style>
+.suggest {
+  width: 100%;
+  position: absolute;
+  margin-top: -32px;
+  margin-left: 10px;
+  color: rgb(161, 161, 161);
+  font-style: italic;
+  font-size: 16px;
+}
+
 .active {
   transition: transform 1s ease;
   margin-bottom: 20px;
-  transform: translateY(-30vh);
+  transform: translateY(-27vh);
   opacity: 0.6;
 }
 .nonActive {

@@ -17,6 +17,7 @@ function comparer (otherArray) {
 
 export default new Vuex.Store({
   state: {
+    favorites: [],
     item: [],
     selectedItem: [],
     setting: {}
@@ -28,6 +29,12 @@ export default new Vuex.Store({
     },
     ADD_TO_STORE (state, item) {
       state.item.push(item)
+      let result = state.favorites.filter(el => {
+        return el.properties.numer.match(item.properties.numer)
+      })
+      if (result.length < 1) {
+        state.favorites.push(item)
+      }
     },
     REMOVE_FROM_STORE (state, arr) {
       if (Array.isArray(arr)) {
