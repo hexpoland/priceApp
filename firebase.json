@@ -1,8 +1,10 @@
 {
-  "hosting": {
-    "rewrites": [{
-      "source": "**",
-      "destination": "/index.html"
-    }]
-  }
+    "hosting": {
+        "public": "dist/", // the only required attribute for hosting
+        "ignore": [
+            "firebase.json",
+            "**/.*",
+            "**/node_modules/**"
+        ]
+    }
 }

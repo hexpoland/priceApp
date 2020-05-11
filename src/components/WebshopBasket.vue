@@ -8,7 +8,7 @@
         transition="dialog-bottom-transition"
       >
         <template v-slot:activator="{ on }">
-          <!-- <v-btn color="primary" dark v-on="on">Open Dialog</v-btn> -->
+    <!-- <v-btn color="primary" dark v-on="on">Open Dialog</v-btn>-->
     <!-- </template>
         <v-card>
           <v-toolbar dark class="blue darken-2" color="primary">
@@ -22,7 +22,7 @@
           </v-toolbar>
         </v-card>
       </v-dialog>
-    </v-row> -->
+    </v-row>-->
   </div>
 </template>
 
@@ -32,7 +32,7 @@ export default {
   data: function() {
     return {
       dialog: false,
-      items: [],
+      items: []
     };
   },
   methods: {
@@ -44,16 +44,16 @@ export default {
         .get("https://partsnpriceapi.herokuapp.com/webshopBasket", {
           crossdomain: true,
           headers: { "Access-Control-Allow-Origin": "*" },
-          params: { username: user.username, pass: user.password },
+          params: { username: user.username, pass: user.password }
         })
-        .then((res) => {
+        .then(res => {
           console.log("I get webshop items");
           this.items = res.data.webshopItems;
         })
-        .catch((err) => {
+        .catch(err => {
           console.log(err);
         });
-    },
+    }
   },
   mounted() {
     // this.getWebshopItems();
@@ -62,7 +62,7 @@ export default {
       this.dialog = true;
     });
   },
-  created() {},
+  created() {}
 };
 </script>
 

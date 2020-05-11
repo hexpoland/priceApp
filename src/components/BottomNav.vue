@@ -9,12 +9,9 @@
         <v-progress-circular class="spinner" indeterminate color="green"></v-progress-circular>
       </v-btn>
       <v-btn v-if="!spinner" @click="webShop" flat color="primary" value="code">
-        <!-- <v-btn v-if="!spinner" flat color="primary" value="code"> -->
         <span>WebShop</span>
         <v-icon color="blue">shop</v-icon>
       </v-btn>
-      <!-- after commit  -->
-
       <v-btn @click="sendOrderClick" flat color="primary" value="favorites">
         <span>Wyślij</span>
         <v-icon>email</v-icon>
@@ -37,9 +34,7 @@ export default {
       this.$root.$emit("sendorder");
     },
     removeItem() {
-      //czysci liste
       this.$root.$emit("removeItem");
-      //animacja inputa
       this.$root.$emit("deletedItems");
     },
     webShop() {

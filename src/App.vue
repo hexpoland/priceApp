@@ -1,10 +1,10 @@
 <template>
   <div class="app">
     <topToolbar />
+    <!-- <tabs /> -->
     <v-content class="content">
       <inputComp />
       <partsList @inputActive="inputHandler" v-if="inputActive" @sendorder="sendOrder" />
-      <webshopBasket />
     </v-content>
     <bottomNav />
   </div>
@@ -16,13 +16,15 @@ import bottomNav from "@/components/BottomNav";
 import inputComp from "@/components/Input";
 import partsList from "@/components/PartsList";
 import webshopBasket from "@/components/WebshopBasket";
+import tabs from "@/components/Tabs";
 export default {
   components: {
     topToolbar,
     bottomNav,
     inputComp,
     partsList,
-    webshopBasket
+    webshopBasket,
+    tabs
   },
   data: () => {
     return {

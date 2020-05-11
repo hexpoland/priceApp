@@ -1,10 +1,7 @@
 <template>
-  <v-container
-    class="mainView"
-    v-bind:class="isActive ? 'active' : 'nonActive'"
-  >
+  <v-container class="mainView" v-bind:class="isActive ? 'active' : 'nonActive'">
     <div class="divInput">
-      <span v-if="autoSug" class="suggest">{{ autoSug.properties.nazwa }}</span>
+      <span v-if="autoSug" class="suggest">{{ autoSug.properties.nazwa}}...</span>
       <input
         v-on:change="autoSug"
         class="partInput"
@@ -28,7 +25,7 @@ import cennik from "../cennik.json";
 import List from "@/components/PartsList.vue";
 export default {
   components: {
-    List,
+    List
   },
   mounted: function mounted() {
     this.activeAnim();
@@ -42,7 +39,7 @@ export default {
       priceList: cennik.features,
       isActive: true,
       partsNumber: "",
-      resultArray: [],
+      resultArray: []
     };
   },
   methods: {
@@ -57,11 +54,11 @@ export default {
       }
       findPart = findPart.toUpperCase();
       let temp;
-      let founded = parts.filter((el) => {
+      let founded = parts.filter(el => {
         return el.properties.numer.match(findPart);
       });
 
-      founded.every((el) => {
+      founded.every(el => {
         if (el.properties.cena > 0) {
           this.$store.commit("ADD_TO_STORE", el);
         } else {
@@ -77,12 +74,12 @@ export default {
               );
             }
 
-            temp = parts.filter((el) => {
+            temp = parts.filter(el => {
               return Array.isArray(newNumber)
                 ? el.properties.numer.match(newNumber[0])
                 : el.properties.numer.match(newNumber);
             });
-            temp.forEach((el) => {
+            temp.forEach(el => {
               if (el.properties.cena != "0") {
                 this.$store.commit("ADD_TO_STORE", el);
               }
@@ -110,14 +107,14 @@ export default {
     prevent() {
       window.scrollTo(0, 0);
       document.body.scrollTop = 0;
-    },
+    }
   },
   computed: {
     autoSug: function() {
       let result = "";
 
       if (this.partsNumber.length > 2) {
-        result = this.$store.state.favorites.filter((el) => {
+        result = this.$store.state.favorites.filter(el => {
           return el.properties.numer.match(this.partsNumber);
         });
         if (result.length > 0) {
@@ -132,18 +129,20 @@ export default {
       this.resultArray = this.$store.state.item;
 
       return this.resultArray;
-    },
-  },
+    }
+  }
 };
 </script>
 
 <style>
 .suggest {
-  width: 100%;
+  white-space: nowrap;
+  max-width: 300px;
+  overflow: hidden;
   position: absolute;
   margin-top: -32px;
-  margin-left: 10px;
-  color: rgb(161, 161, 161);
+  margin-left: -10px;
+  color: rgb(0, 180, 126);
   font-style: italic;
   font-size: 16px;
 }
@@ -154,10 +153,15 @@ export default {
   transform: translateY(-27vh);
   opacity: 0.6;
 }
+@media only screen and (min-height: 800px) {
+  .active {
+    transform: translateY(-23vh);
+  }
+}
 .nonActive {
   transition: transform 1s ease;
 
-  transform: translateY(0);
+  transform: translateY(-15vh);
 }
 .content {
   padding-top: 56px;

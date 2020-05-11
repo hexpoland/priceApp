@@ -39,7 +39,18 @@ export default {
   },
   mounted() {
     this.$root.$on("sendorder", () => {
-      console.log(JSON.stringify(this.selectedParts));
+      let subject = "Wycena częsci";
+      let body = "";
+      let totalPrice = 0;
+      this.selectedParts.forEach(el => {
+        body += `Numer:${el.numer} Nazwa:${el.nazwa} Cena:${el.cena}zł netto %0D%0A
+`;
+        totalPrice += el.cena;
+      });
+      body += `Razem: ${totalPrice.toFixed(
+        2
+      )} netto %0D%0A %0D%0A %0D%0A Wysłano z programu Parts'n Price`;
+      window.location.href = `mailto:?subject=${subject}&body=${body}`;
     }),
       this.$root.$on("removeItem", () => {
         this.$store.commit("REMOVE_FROM_STORE", this.selectedParts);
@@ -87,14 +98,16 @@ export default {
 <style scoped>
 .resultView {
   position: absolute;
-  width: 100%;
+
+  left: 0;
+  width: 100vw;
   top: 60%;
-  left: 0px;
-  max-height: 400px;
+
+  max-height: 300px;
   overflow-y: scroll;
 }
 .styleLista {
-  width: 80vm;
+  position: relative;
 }
 /* @media only screen(max-width:375) {
   .resultView {
